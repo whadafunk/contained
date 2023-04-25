@@ -1,0 +1,13 @@
+#!/bin/bash
+
+docker container run -d \
+	--rm \
+	--name mesh \
+	--hostname mesh \
+	--network br_200 \
+	-v $(pwd)/data:/home/node/meshcentral/meshcentral-data \
+	-v $(pwd)/files:/home/node/meshcentral/meshcentral-files \
+	-v $(pwd)/recordings:/home/node/meshcentral/recordings \
+	-v $(pwd)/backup:/home/node/meshcentral/meshcentral-backup \
+	uldiseihenbergs/meshcentral
+docker network connect macnet mesh

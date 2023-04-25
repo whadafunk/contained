@@ -1,0 +1,10 @@
+#!/bin/bash
+docker container run -d --rm \
+	--name teampass2 \
+	--hostname teampass2 \
+	--network br0\
+	-v /var/docks/teampass2/site:/var/www/html/teampass \
+	-v /var/docks/teampass2/php.ini:/usr/local/etc/php/php.ini \
+	-v /var/docks/teampass2/000-default.conf:/etc/apache2/sites-available/000-default.conf \
+	-e TZ=Europe/Bucharest \
+	php-7-bit

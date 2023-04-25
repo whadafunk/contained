@@ -1,0 +1,18 @@
+#!/bin/bash
+DOCKER_NAME=generic_wp
+DOCKER_DIR=$(pwd)
+docker container run --detach \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME} \
+	--user www-data \
+	--restart unless-stopped \
+	--network br0 \
+	-e TZ=Europe/Bucharest \
+	-e WORDPRESS_DB_HOST=databee \
+	-e WORDPRESS_DB_USER=wp_usr \
+	-e WORDPRESS_DB_PASSWORD=wpa@ssvorD \
+	-e WORDPRESS_DB_NAME=wp_gen \
+	-e WORDPRESS_TABLE_PREFIX=${DOCKER_NAME} \
+	-v ${DOCKER_DIR}/www:/var/www/html \
+	-v ${DOCKER_DIR}/php.ini:$PHP_INI_DIR/conf.d/
+	wordpress:latest

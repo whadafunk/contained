@@ -1,0 +1,9 @@
+#!/bin/bash
+docker container run -d \
+	--name portadocks \
+	--hostname portadocks \
+	--restart=unless-stopped \
+	--network br0 \
+	-v portainer_data:/data \
+	-v /var/run/docker.sock:/var/run/docker.sock \
+	portainer/portainer-ce

@@ -1,0 +1,12 @@
+#!/bin/bash
+docker container run -d --name=npm \
+		--rm \
+		--hostname=npm \
+		--network=macnet \
+		--ip=192.168.101.195 \
+		-v /var/docks/npm/data:/data \
+		-v /var/docks/npm/letsencrypt:/etc/letsencrypt \
+		-v  /var/run/docker.sock:/tmp/docker.sock:ro \
+		jc21/nginx-proxy-manager
+
+docker network connect br0 npm
