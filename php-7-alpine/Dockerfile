@@ -1,5 +1,6 @@
-from php:8.0.24RC1-apache-bullseye
-MAINTAINER gri.daniel@gmail.com
+from php:7.4.29-apache-bullseye
+MAINTAINER daniel.grigore@bit-soft.ro
+RUN export DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
 	apt-utils \
@@ -12,7 +13,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get install -y \
 	libbz2-dev \
-	libenchant-2-dev \
 	libgmp-dev \
 	libc-client-dev \
 	libkrb5-dev \
@@ -30,7 +30,6 @@ RUN apt-get install -y \
  	&& docker-php-ext-install bcmath \
 	&& docker-php-ext-install bz2 \
 	&& docker-php-ext-install dba \
-	&& docker-php-ext-install enchant \
 	&& docker-php-ext-install exif \
 	&& docker-php-ext-install gd \
 	&& docker-php-ext-install gettext \
