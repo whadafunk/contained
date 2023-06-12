@@ -6,18 +6,19 @@ LABEL my_youtube="https://www.youtube.com/@routerologyblog1111"
 # Apache and PHP on Alpine Linux
 
 # Start with installing some generic tools that can help us with troubleshooting
+# We also need to install apache and the apache php module.
+# Apparently there is no apache-php container based on alpine. Not on the DockerHub repository at least
 
 RUN apk update && \
 	apk add \
-	net-tools \
-	vim \
-	tcpdump \
-	ca-certificates \
-	iproute2 \
-	wget
+	apache2 \
+	apache2-utils \
+	php81-apache2 \
+	&& rm -rf /var/lib/apt/lists/*
 
 # PHP official container from docker comes with a couple of extensions preinstalled
 # To add supplementary extensions we can use the docker-php-ext-install and docker-php-ext-configure scripts
+# The following listing contains allmost every needed php module and its dependencies, but I have commented them out.
 
 # Before running the scripts that will compile our extensions we need to add the required libraries
 
@@ -66,38 +67,46 @@ RUN 	apk add \
 #	&& docker-php-ext-install mbstring \
 #	&& docker-php-ext-install sodium \
 #	&& docker-php-ext-install calendar \
- 	&& rm -rf /var/lib/apt/lists/* 
+ 	&& rm -rf /var/lib/apt/lists/* \
+	&&  rm -rf /usr/src/*
 
-RUN apk add \
-	apache2 \
-	apache2-ssl \
-	apache2-utils \
-	&& rm -rf /var/lib/apt/lists/*
+# Add the following extra tools only if you need them
+# The same goes for the apache2-ssl also
 
-# Add our ca to the trusted ssl chain
+#RUN apk update && \
+#	apk add \
+#	net-tools \
+#	vim \
+#	tcpdump \
+#	ca-certificates \
+#	iproute2 \
+#	wget \
+#	apache2-ssl \
+# 	&& rm -rf /var/lib/apt/lists/* 
+
+# If we are using SSL, the we might need to add our ca to the trusted ssl chain
 #COPY ssl/*.crt /usr/local/share/ca-certificates
 #RUN update-ca-certificates
 
 # Set the correct timezone
 
-# Configure php, although I recommend that you mount your php.ini at runtime
-#COPY ini/php.ini $PHP_INI_DIR/
+ENV TZ="Europe/Bucharest"
 
-#COPY www/ /var/www/html
+# We can copy the site content straight into the container but that's not a good practice.
+# I put this here just for demo purpose
+# A better way would be to mount it as a volume at container start
+# COPY www/ /var/www/localhost/htdocs
 
-# Configure apache2, although I recommend that you mount your apache config at runtime
-#COPY apache2.conf /etc/apache2/
+# The configuration files for PHP and HTTPD do not hurt to be copied into the container
+# but they can be very well overriden by mounting them at container start
 
-# Enable our apache2 modules
-#RUN 	a2enmod rewrite && 
-#	a2enmod ssl
+COPY php_ini/php.ini $PHP_INI_DIR/php.ini
+COPY httpd_conf/httpd.conf /etc/apache2/httpd.conf
 
+# The PID on this container is root/1, but the httpd workers/subprocesses are started with 100:101
+# So if any files are to be created by the app inside, they will have that ownership
 
-
-
-# We are running just the default site from /var/www, on http port 80/TCP
-#COPY 000-default.conf /etc/apache2/sites-available/
-#RUN     a2ensite 000-default
+EXPOSE 80/tcp
 
 ENTRYPOINT ["httpd","-DFOREGROUND"]
 
