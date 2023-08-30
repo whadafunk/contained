@@ -2,13 +2,15 @@
 DOCKER_NAME=mariadb
 docker container run \
 	--detach \
+	--restart unless-stopped \
 	--name ${DOCKER_NAME} --hostname ${DOCKER_NAME} \
 	--network bridge \
 	-e MARIADB_ROOT_PASSWORD=pass123 \
+	-v $(pwd)/data:/var/lib/mysql/ \
+	-v $(pwd)/conf/conf.d:/etc/mysql/conf.d \
+	-v $(pwd)/logs:/var/log/mysql \
 	-e TZ=Europe/Bucharest \
 	mariadb:latest
-#-v $(pwd)/data:/var/lib/mysql/ \
-#-v $(pwd)/conf:/etc/mysql/conf.d \
 #	--init \
 #	--log-driver=syslog \
 #  	--log-opt syslog-address=udp://172.16.100.1:514 \

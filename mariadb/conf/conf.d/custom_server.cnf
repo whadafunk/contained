@@ -24,7 +24,7 @@ basedir                 = /usr
 
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-#bind-address            = 127.0.0.1
+bind-address            = 0.0.0.0
 
 #
 # * Fine Tuning
@@ -37,7 +37,7 @@ basedir                 = /usr
 # This replaces the startup script and checks MyISAM tables if needed
 # the first time they are touched
 #myisam_recover_options = BACKUP
-#max_connections        = 100
+max_connections        = 150
 #table_cache            = 64
 
 #
@@ -100,15 +100,8 @@ collation-server      = utf8mb4_general_ci
 # https://mariadb.com/kb/en/innodb-system-variables/#innodb_buffer_pool_size
 #innodb_buffer_pool_size = 8G
 
-# this is only for embedded server
-[embedded]
-
 # This group is only read by MariaDB servers, not by MySQL.
 # If you use the same .cnf file for MySQL and MariaDB,
 # you can put MariaDB-only options here
 [mariadbd]
 
-# This group is only read by MariaDB-11.0 servers.
-# If you use the same .cnf file for MariaDB of different versions,
-# use this group for options that older servers don't understand
-[mariadb-11.0]
