@@ -1,0 +1,39 @@
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.3. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 31 07:54:20.915875 2023] [mpm_prefork:notice] [pid 8] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 07:54:20.915901 2023] [core:notice] [pid 8] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 31 07:54:34.540087 2023] [mpm_prefork:notice] [pid 8] AH00169: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 31 07:54:57.576460 2023] [mpm_prefork:notice] [pid 7] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 07:54:57.576486 2023] [core:notice] [pid 7] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 31 07:56:57.019181 2023] [mpm_prefork:notice] [pid 7] AH00169: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 31 07:57:24.085323 2023] [mpm_prefork:notice] [pid 7] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 07:57:24.085348 2023] [core:notice] [pid 7] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 31 08:08:10.092915 2023] [mpm_prefork:notice] [pid 7] AH00169: caught SIGTERM, shutting down
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Thu Aug 31 08:11:42.491110 2023] [mpm_prefork:notice] [pid 7] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:11:42.491137 2023] [core:notice] [pid 7] AH00094: Command line: 'httpd -D FOREGROUND'
+[Thu Aug 31 08:19:00.460230 2023] [mpm_prefork:notice] [pid 7] AH00169: caught SIGTERM, shutting down
+[Thu Aug 31 08:20:29.321479 2023] [mpm_prefork:notice] [pid 20] AH00163: Apache/2.4.57 (Unix) configured -- resuming normal operations
+[Thu Aug 31 08:20:29.321542 2023] [core:notice] [pid 20] AH00094: Command line: '/usr/sbin/httpd'
+[Thu Aug 31 08:22:49.885043 2023] [mpm_prefork:notice] [pid 18] AH00163: Apache/2.4.57 (Unix) configured -- resuming normal operations
+[Thu Aug 31 08:22:49.885105 2023] [core:notice] [pid 18] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:29:25.519775 2023] [mpm_prefork:notice] [pid 13] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:29:25.519803 2023] [core:notice] [pid 13] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:36:24.791302 2023] [mpm_prefork:notice] [pid 13] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:36:24.791331 2023] [core:notice] [pid 13] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:41:37.863084 2023] [mpm_prefork:notice] [pid 17] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:41:37.863135 2023] [core:notice] [pid 17] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:42:47.873060 2023] [mpm_prefork:notice] [pid 13] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:42:47.873092 2023] [core:notice] [pid 13] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:46:44.524747 2023] [core:warn] [pid 49] AH00098: pid file /run/apache2/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Thu Aug 31 08:46:44.529510 2023] [mpm_prefork:notice] [pid 49] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:46:44.529531 2023] [core:notice] [pid 49] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:50:04.383256 2023] [mpm_prefork:notice] [pid 18] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:50:04.383286 2023] [core:notice] [pid 18] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:53:30.154459 2023] [mpm_prefork:notice] [pid 13] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:53:30.154505 2023] [core:notice] [pid 13] AH00094: Command line: 'httpd'
+[Thu Aug 31 08:58:11.284086 2023] [mpm_prefork:notice] [pid 11] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 08:58:11.284116 2023] [core:notice] [pid 11] AH00094: Command line: 'httpd'
+[Thu Aug 31 09:11:44.968270 2023] [mpm_prefork:notice] [pid 10] AH00163: Apache/2.4.57 (Unix) PHP/8.1.22 configured -- resuming normal operations
+[Thu Aug 31 09:11:44.968300 2023] [core:notice] [pid 10] AH00094: Command line: 'httpd -D FOREGROUND'
