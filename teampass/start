@@ -1,9 +1,0 @@
-#!/bin/bash
-docker container run -d \
-	--name teampass \
-	--hostname teampass \
-	--restart unless-stopped \
-	--network macnet \
-	-v /var/docks/teampass/site:/var/www/html \
-	teampass:latest
-#docker network connect br0 teampass

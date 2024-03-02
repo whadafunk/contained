@@ -1,0 +1,16 @@
+#!/bin/bash
+docker container run -d \
+	--name ipam-www\
+	--hostname ipam-www \
+	--restart=unless-stopped \
+	--network br-0 \
+	-e TZ=Europe/Bucharest \
+	-e IPAM_DATABASE_HOST=10.151.1.72 \
+	-e IPAM_DATABASE_USER=ipamE3r \
+	-e IPAM_DATABASE_PASS=ipA55north \
+	-e IPAM_DATABASE_NAME=phpipam \
+	-e IPAM_TRUST_X_FORWARDED=true \
+	--mount type=bind,source=$(pwd)/logo,target=/phpipam/css/images/logo \
+	phpipam/phpipam-www:latest
+#docker network connect macnet ipam-www
+

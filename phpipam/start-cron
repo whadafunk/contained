@@ -1,0 +1,14 @@
+docker container run -d \
+	--name ipam-cron \
+	--hostname ipam-cron \
+	--restart=unless-stopped \
+	--network br-0 \
+	-e TZ=Europe/Bucharest \
+	-e IPAM_DATABASE_HOST=10.151.1.72 \
+	-e IPAM_DATABASE_USER=ipamE3r \
+	-e IPAM_DATABASE_PASS=ipA55north \
+	-e IPAM_DATABASE_NAME=phpipam \
+	-e SCAN_INTERVAL=1h \
+	phpipam/phpipam-cron:latest
+#docker network connect br-0 ipam-cron
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DOCKER_NAME=guano-guacd
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME}.asseco-see.ro  \
+	--detach \
+	--restart unless-stopped \
+	--network br-0 \
+	--mount type=bind,source=$(pwd)/recordings,target=/var/lib/guacamole-recordings \
+	--mount type=bind,source=$(pwd)/shares,target=/var/lib/guacamole-shares \
+	--mount type=bind,source=$(pwd)/guacd.conf,target=/etc/guacamole/guacd.conf \
+	-e TZ=Europe/Bucharest \
+	guacamole/guacd:latest
+

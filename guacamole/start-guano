@@ -1,0 +1,24 @@
+#!/bin/bash
+
+DOCKER_NAME=guano
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME}.asseco-see.ro  \
+	--detach \
+	--restart unless-stopped \
+	--network br-0 \
+	-e TZ=Europe/Bucharest \
+	-e GUACD_HOSTNAME=guano-guacd \
+	-e GUACD_PORT=4822 \
+	-e MYSQL_HOSTNAME=maria-ioana.asseco-see.mgmt \
+	-e MYSQL_PORT=3306 \
+	-e MYSQL_DATABASE=guano \
+	-e MYSQL_USER=guano_apes \
+	-e MYSQL_PASSWORD=sandra \
+	-e REMOTE_IP_VALVE_ENABLED=true \
+	-e GUACAMOLE_HOME=/var/ghome \
+	--mount type=bind,source=$(pwd)/recordings,target=/var/lib/guacamole-recordings \
+	--mount type=bind,source=$(pwd)/shares,target=/var/lib/guacamole-shares \
+	--mount type=bind,source=$(pwd)/guacamole-home,target=/var/ghome \
+	guacamole/guacamole:latest
+
