@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DOCKER_NAME=ns-private-gui
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME}.asseco-see.ro  \
+	--detach \
+	--restart unless-stopped \
+	--network br-10 \
+	-e PDNS_ADMIN_SQLA_DB_HOST="10.151.1.74" \
+	-e PDNS_ADMIN_SQLA_DB_PORT="3306" \
+	-e PDNS_ADMIN_SQLA_DB_USER="ns-private-gui" \
+	-e PDNS_ADMIN_SQLA_DB_PASSWORD="ns-private-pass" \
+	-e PDNS_ADMIN_SQLA_DB_NAME="nsprivategui" \
+	-e PDNS_ADMIN_SALT="$2b$12$/0PKQGVvz9ZRVBST4qmtqe" \
+	-e PDNS_API_URL="http://ns-master:8081/" \
+  	-e PDNS_API_KEY="$scrypt$ln=10,p=1,r=8$oqj/kSigaPWwTVNjeJNxUw==$qkPjfjDP0mmHYpr2+xKeYXOS1i4X6MaY2rSMmmwYDFY=" \
+  	-e PDNS_VERSION="4.7.4" \
+	-e PDNS_MAIL_SERVER="10.101.12.101" \
+	-e PDNS_MAIL_PORT="25" \
+	-e PDNS_MAIL_USE_TLS="False" \
+	-e PDNS_MAIL_USE_SSL="False" \
+	-e PDNS_MAIL_DEFAULT_SENDER="('DNS-Private-Service','noreply@asseco-see.ro')" \
+	pschiffe/pdns-admin
+
+
+#--mount type=bind,source=$(pwd)/powerdns-admin,destination=/opt/powerdns-admin/ \
+

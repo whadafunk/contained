@@ -1,0 +1,36 @@
+#!/bin/bash
+
+DOCKER_NAME=ns-master
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME} \
+	--detach \
+	--restart unless-stopped \
+	--network macnet \
+	--ip 192.168.11.82 \
+	-e PDNS_gmysql_host=databee \
+	-e PDNS_gmysql_port=3306 \
+	-e PDNS_gmysql_user=ns_master \
+	-e PDNS_gmysql_password=nspa5s \
+	-e PDNS_gmysql_dbname=ns_master \
+  	-e PDNS_master=yes \
+  	-e PDNS_api=yes \
+  	-e PDNS_api_key="csJb2bkcGPqu" \
+ 	-e PDNS_webserver=yes \
+  	-e PDNS_webserver_address=0.0.0.0 \
+  	-e PDNS_webserver_password="6tCXD6bLh23W" \
+	-e PDNS_webserver_allow_from=0.0.0.0/0 \
+  	-e PDNS_version_string=full \
+  	-e PDNS_default_ttl=1500 \
+	-e PDNS_also_notify= \
+	-e PDNS_allow_axfr_ips= \
+	-e PDNS_dnsupdate=no \
+	-e PDNS_loglevel=4 \
+	-e PDNS_disable_axfr=yes \
+  	pschiffe/pdns-mysql
+docker network connect br-lan ${DOCKER_NAME}
+
+
+#	-e PDNS_log_dns_queries=yes \
+#	-e PDNS_log_dns_details=yes \
+

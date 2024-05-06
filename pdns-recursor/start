@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DOCKER_NAME=ns-recursor
+DOCKER_DIR=$(pwd)
+docker run -d --name ${DOCKER_NAME} \
+  -e PDNS_api_key=secret \
+  -e PDNS_webserver=yes \
+  -e PDNS_webserver_port=8081 \
+  -e PDNS_webserver_address=0.0.0.0 \
+  -e PDNS_webserver_password=secret2 \
+  -e PDNS_loglevel=5 \
+  -e PDNS_allow-from='192.168.11.0/24, 192.168.22.0/24' \
+  -e PDNS_forward-zones='home=192.168.11.82, lab=192.168.11.82, routerology.ro=192.168.11.82' \
+  --network macnet \
+  --ip 192.168.11.83 \
+  pschiffe/pdns-recursor
+
