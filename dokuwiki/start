@@ -1,0 +1,21 @@
+#!/bin/bash
+
+DOCKER_NAME=wiki
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME}  \
+	--detach \
+	--restart unless-stopped \
+	--network br-10 \
+	--mount type=bind,source=$(pwd)/data,destination=/bitnami/dokuwiki \
+	--env DOKUWIKI_PASSWORD=adminadmin \
+	--env DOKUWIKI_USERNAME=admin \
+	--env DOKUWIKI_FULL_NAME="Generic Admin" \
+	--env DOKUWIKI_EMAIL="administrator@asseco-see.com" \
+	--env DOKUWIKI_WIKI_NAME="ASEE WIKI" \
+	--env PHP_ENABLE_OPCACHE=yes \
+	--env PHP_MEMORY_LIMIT=256M \
+	--env PHP_POST_MAX_SIZE=4M \
+	--env PHP_UPLOAD_MAX_FILESIZE=20M \
+	bitnami/dokuwiki
+
