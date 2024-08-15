@@ -13,6 +13,6 @@ docker container run --detach \
 	-e WORDPRESS_DB_PASSWORD=wpa@ssvorD \
 	-e WORDPRESS_DB_NAME=wp_gen \
 	-e WORDPRESS_TABLE_PREFIX=${DOCKER_NAME} \
-	-v ${DOCKER_DIR}/www:/var/www/html \
-	-v ${DOCKER_DIR}/php.ini:$PHP_INI_DIR/conf.d/
+	--mount type=bind,source=${DOCKER_DIR}/www,target=var/www/html \
+	--mount type=bind,source=${DOCKER_DIR}/php.ini,target=$PHP_INI_DIR/conf.d/
 	wordpress:latest
