@@ -1,0 +1,53 @@
+Exposed Ports
+
+The Unifi-in-Docker container exposes the following ports. A minimal Unifi Controller installation requires you expose the first three with the -p ... option.
+
+    8080/tcp - Device command/control
+    8443/tcp - Web interface + API
+    3478/udp - STUN service
+    8843/tcp - HTTPS portal (optional)
+    8880/tcp - HTTP portal (optional)
+    6789/tcp - Speed Test (unifi5 only) (optional)
+-----------------------------------------------------------------------------------
+Environment Variables:
+
+JVM_EXTRA_OPTS Used to start the JVM with additional arguments. Default: unset
+
+JVM_INIT_HEAP_SIZE Set the starting size of the javascript engine for example: 1024MDefault: unset
+
+JVM_MAX_HEAP_SIZE Java Virtual Machine (JVM) allocates available memory. For larger installations a larger value is recommended. For memory constrained system this value can be lowered. Default: 1024M
+
+UNIFI_HTTP_PORT This is the HTTP port used by the Web interface. Browsers will be redirected to the UNIFI_HTTPS_PORT. Default: 8080
+
+UNIFI_HTTPS_PORT This is the HTTPS port used by the Web interface. Default: 8443
+
+PORTAL_HTTP_PORT Port used for HTTP portal redirection. Default: 80
+
+PORTAL_HTTPS_PORT Port used for HTTPS portal redirection. Default: 8843
+
+UNIFI_STDOUT Controller outputs logs to stdout in addition to server.log Default: unset
+
+TZ TimeZone. (i.e America/Chicago)
+
+JVM_MAX_THREAD_STACK_SIZE Used to set max thread stack size for the JVM Example:
+JVM_EXTRA_OPTS Used to start the JVM with additional arguments. Default: unset
+
+JVM_INIT_HEAP_SIZE Set the starting size of the javascript engine for example: 1024MDefault: unset
+
+JVM_MAX_HEAP_SIZE Java Virtual Machine (JVM) allocates available memory. For larger installations a larger value is recommended. For memory constrained system this value can be lowered. Default: 1024M
+
+-----------------------------------------------------------------------------------
+
+Certificate Support
+
+To use custom SSL certs, you must map a volume with the certs to /unifi/cert
+
+They should be named:
+
+cert.pem  # The Certificate
+privkey.pem # Private key for the cert
+chain.pem # full cert chain
+
+If your certificate or private key have different names, you can set the environment variables CERTNAME and CERT_PRIVATE_NAME to the name of your certificate/private key, e.g. CERTNAME=my-cert.pem and CERT_PRIVATE_NAME=my-privkey.pem.
+
+For letsencrypt certs, we'll autodetect that and add the needed Identrust X3 CA Cert automatically. In case your letsencrypt cert is already the chained certificate, you can set the CERT_IS_CHAIN environment variable to true, e.g. CERT_IS_CHAIN=true. This option also works together with a custom CERTNAME.
