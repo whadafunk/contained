@@ -1,0 +1,47 @@
+services:
+
+  wpbox:
+    image: wordpress
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: databee
+      WORDPRESS_DB_USER: wpuser
+      WORDPRESS_DB_PASSWORD: wp@ss
+      WORDPRESS_DB_NAME: wp_db
+    volumes:
+      - www:/var/www/html
+    networks:
+      - wp_net
+
+  databee:
+    container_name: databee
+    hostname: databee
+    image: mariadb
+    restart: always
+    stdin_open: true
+    tty: true
+    init: false
+    privileged: false
+    environment:
+      MARIADB_DATABASE: wp_db
+      MARIADB_USER: wpuser
+      MARIADB_PASSWORD: wp@ss
+      MARIADB_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - wp_net
+
+volumes:
+  db:
+   name: db
+  www:
+   name: www
+
+networks:
+  wp_net:
+   name: wp_net
+   driver: bridge
+

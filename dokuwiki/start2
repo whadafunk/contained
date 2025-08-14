@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DOCKER_NAME=wiki
+docker container run \
+	--name ${DOCKER_NAME} \
+	--hostname ${DOCKER_NAME}  \
+	--detach \
+	--restart unless-stopped \
+	--network br-lan \
+	--mount type=bind,source=$(pwd)/data,destination=/storage \
+	--user 1026 \
+	--env DOKUWIKI_PASSWORD=mmChpuChL88m \
+	--env DOKUWIKI_USERNAME=admin \
+	--env DOKUWIKI_FULL_NAME="Generic Admin" \
+	--env DOKUWIKI_EMAIL="admin@home" \
+	--env DOKUWIKI_WIKI_NAME="Routerology HOME Wiki" \
+	--env PHP_ENABLE_OPCACHE=yes \
+	--env PHP_MEMORY_LIMIT=256M \
+	--env PHP_POST_MAX_SIZE=4M \
+	--env PHP_UPLOAD_MAX_FILESIZE=20M \
+	--env PHP_UPLOADLIMIT=25M \
+	--env PHP_MEMORYLIMIT=256M \
+	--env PHP_TIMEZONE=Europe/Bucharest \
+	--env PHP_ENABLEOPCACHE=yes \
+	--env PHP_POSTMAXSIZE=5M \
+	--env PHP_UPLOADMAXFILESIZE=25M \
+	dokuwiki/dokuwiki
+
